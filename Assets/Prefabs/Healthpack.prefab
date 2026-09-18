@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6972053024224841459}
   - component: {fileID: 3110771147451805424}
   m_Layer: 0
-  m_Name: FirstAidKit
+  m_Name: Healthpack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
