@@ -1258,9 +1258,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8975cd5515f376a42986b7efa9d0692c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 8730454159201574112, guid: e87184269cdfcfe4789a6948c3872ac7, type: 3}
+  bulletPrefab: {fileID: 1744975789844755192, guid: e87184269cdfcfe4789a6948c3872ac7, type: 3}
   shootPoint: {fileID: 1153998344}
-  speed: 200
+  speed: 100
 --- !u!1 &1859801796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1766,6 +1766,18 @@ PrefabInstance:
     - target: {fileID: 3433067295581938324, guid: 08791f6827052af45874314cfe87bc84, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4696766269688446863, guid: 08791f6827052af45874314cfe87bc84, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.2897
+      objectReference: {fileID: 0}
+    - target: {fileID: 4696766269688446863, guid: 08791f6827052af45874314cfe87bc84, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.037
+      objectReference: {fileID: 0}
+    - target: {fileID: 4696766269688446863, guid: 08791f6827052af45874314cfe87bc84, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.002
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
