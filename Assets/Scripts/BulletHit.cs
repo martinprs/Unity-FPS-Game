@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class BulletHit : MonoBehaviour
 {
-    public float lifeTime = 5f;
+    public float lifeTime = 1f;
 
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, lifeTime);
+        Destroy(transform.root.gameObject, lifeTime);
     }
 
     // Update is called once per frame
@@ -19,7 +19,7 @@ public class BulletHit : MonoBehaviour
     }
     void OnCollisionEnter(Collision col)
     {
-        Destroy(gameObject);
+        Destroy(transform.root.gameObject);
         
         if (col.gameObject.CompareTag("Enemy"))
         {
