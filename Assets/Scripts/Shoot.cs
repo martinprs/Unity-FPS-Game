@@ -6,21 +6,23 @@ public class Shoot : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Transform shootPoint;
-    public float speed = 20f;
+    public float speed = 100f;
+    public float fireRate = 0.2f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private float nextFireTime;
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) //when left mouse button is clicked
+        if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
         {
-            GameObject b = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
-            b.GetComponent<Rigidbody>().velocity = shootPoint.forward * speed;
+            nextFireTime = Time.time + fireRate;
+            ShootBullet();
         }
+    }
+
+    void ShootBullet()
+    {
+        GameObject b = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+        b.GetComponent<Rigidbody>().velocity = shootPoint.forward * speed;
     }
 }
