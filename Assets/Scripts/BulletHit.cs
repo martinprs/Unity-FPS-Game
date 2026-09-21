@@ -17,7 +17,7 @@ public class BulletHit : MonoBehaviour
     {
         
     }
-    void OnCollisionEnter(Collision col)
+    void OnTriggerEnter(Collider col)
     {
         Destroy(transform.root.gameObject);
         
