@@ -25,8 +25,19 @@ public class EnemyHealth : MonoBehaviour
         health--;
 
         if (health <= 0)
-        {
-            Instantiate(AmmoBox, transform.position, Quaternion.identity);
+        {   
+            int drop = Random.Range(1, 4);
+
+            if (drop == 1)
+            {
+                Instantiate(AmmoBox, transform.position, Quaternion.identity);
+            }
+            
+            else if (drop == 2)
+            {
+                Instantiate(HealthPack, transform.position, Quaternion.identity);
+            }
+
             Destroy(gameObject);
         }
     }
