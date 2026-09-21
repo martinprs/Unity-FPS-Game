@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class EnemyHealth : MonoBehaviour
 {
     public int health = 3;
+    public GameObject HealthPack;
+    public GameObject AmmoBox;
 
     void Start()
     {
@@ -24,6 +26,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (health <= 0)
         {
+            Instantiate(AmmoBox, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
