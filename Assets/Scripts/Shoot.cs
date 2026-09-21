@@ -8,12 +8,15 @@ public class Shoot : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform shootPoint;
     public TMP_Text AmmoText;
+    public TMP_Text ReloadText;
     public float speed = 100f;
     public float fireRate = 0.2f;
     public float bullets = 30f;
     public float mags = 3f;
+    public float reloadTime = 1f;
 
     private float nextFireTime;
+    private bool isReloading;
 
     void Start()
     {
@@ -22,10 +25,15 @@ public class Shoot : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
+        if (Input.GetMouseButton(0) && !isReloading && Time.time >= nextFireTime && bullets > 0)
         {
             nextFireTime = Time.time + fireRate;
             ShootBullet();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R) && !isReloading && bullets < 30f && mags > 0)
+        {
+            StartCoroutine(Reload());
         }
     }
 
@@ -33,11 +41,11 @@ public class Shoot : MonoBehaviour
     {
         GameObject b = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
         b.GetComponent<Rigidbody>().velocity = shootPoint.forward * speed;
-        bullets --;
+        bullets--;
         AmmoUpdate();
     }
 
-     void OnTriggerEnter(Collider col)
+    void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag("Ammo"))
         {
@@ -45,6 +53,18 @@ public class Shoot : MonoBehaviour
             AmmoUpdate();
             Destroy(col.gameObject);
         }
+    }
+
+    IEnumerator Reload()
+    {
+        isReloading = true;
+        ReloadText.text = "Reloading...";
+        yield return new WaitForSeconds(reloadTime);
+        ReloadText.text = "";
+        bullets = 30f;
+        mags--;
+        isReloading = false;
+        AmmoUpdate();
     }
 
     void AmmoUpdate()
