@@ -49,7 +49,7 @@ public class Shoot : MonoBehaviour
     {
         if (col.CompareTag("Ammo"))
         {
-            bullets += 60;
+            mags += 1;
             AmmoUpdate();
             Destroy(col.gameObject);
         }
