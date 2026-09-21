@@ -6,9 +6,10 @@ using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int health = 3;
-    public TMP_Text HealthText; 
-    
+    public int health = 100;
+    public TMP_Text HealthText;
+    public float tickRate = 0.5f;
+
     void Start()
     {
         HealthUpdate();
@@ -17,21 +18,15 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag("Enemy"))
         {
-            health--;
-            HealthUpdate();
-            Destroy(col.gameObject);
+            StartCoroutine(DecreaseHealth());
 
-            if (health <= 0)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
         }
 
         if (col.CompareTag("Healthpack"))
@@ -39,6 +34,23 @@ public class PlayerHealth : MonoBehaviour
             health++;
             HealthUpdate();
             Destroy(col.gameObject);
+        }
+    }
+
+    IEnumerator DecreaseHealth()
+    {
+        while (true)
+        {   
+            HealthUpdate();
+
+            if (health <= 0)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+
+            yield return new WaitForSeconds(tickRate);
+
+            health -= 25;
         }
     }
 
