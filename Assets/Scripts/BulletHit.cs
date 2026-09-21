@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletHit : MonoBehaviour
 {
     public float lifeTime = 1f;
+    public EnemyHealth enemyHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -17,13 +18,19 @@ public class BulletHit : MonoBehaviour
     {
         
     }
+
+    private void Awake()
+    {
+        enemyHealth = FindObjectOfType<EnemyHealth>();
+    }
+    
     void OnTriggerEnter(Collider col)
     {
         Destroy(transform.root.gameObject);
         
         if (col.gameObject.CompareTag("Enemy"))
         {
-            Destroy(col.gameObject);
+            enemyHealth.DecreaseHealth();
         }
     }
 
