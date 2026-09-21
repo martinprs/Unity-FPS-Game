@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (col.CompareTag("Healthpack"))
         {
-            health++;
+            health += 100 - health;
             HealthUpdate();
             Destroy(col.gameObject);
         }
