@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
         playerMove = GetComponent<PlayerMove>();
         enemyFollows = FindObjectsOfType<EnemyFollow>();
         shoot = GetComponent<Shoot>();
-        itemAnimation = GetComponentInChildren<ItemAnimation>(true);
+        itemAnimations = FindObjectsOfType<ItemAnimation>();
     }
 
     void FreezeGame(bool enabled)

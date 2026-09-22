@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemAnimation : MonoBehaviour
-{
+{   
     private float rotationSpeed = 90f;
 
     // Update is called once per frame
@@ -14,9 +14,9 @@ public class ItemAnimation : MonoBehaviour
 
     public void Animate(bool enabled)
     {
-        if (enabled)
+        if (!enabled)
         {
-            rotationSpeed = 0;
+            rotationSpeed = 0f;
         }
     }
 }
