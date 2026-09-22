@@ -9,9 +9,6 @@ public class MenuManager : MonoBehaviour
     public GameObject MenuCanvas;
     public GameObject GameEndCanvas;
     public TMP_Text Header;
-    public GameObject MenuResumeButton;
-    public GameObject MenuRestartButton;
-    public GameObject MenuExitButton;
 
     private GameManager gameManager;
 
