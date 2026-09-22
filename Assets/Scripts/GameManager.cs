@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text TimerText;
     public float time = 300f; // 5 minutes
 
+    private bool enableTimer = true;
+
     private MenuManager menuManager;
     private CameraLook cameraLook;
     private PlayerMove playerMove;
@@ -18,16 +20,24 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
-    {   
-        Timer();
+    {
+        if (enableTimer)
+        {
+            Timer();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            FreezeGame(true);
+        }
     }
 
-    private void Awake() {
+    private void Awake()
+    {
         menuManager = GetComponent<MenuManager>();
         cameraLook = GetComponentInChildren<CameraLook>();
         playerMove = GetComponent<PlayerMove>();
@@ -40,38 +50,46 @@ public class GameManager : MonoBehaviour
     {
         if (enabled)
         {
+            enableTimer = false;
             cameraLook.Look(false);
             playerMove.Move(false);
             enemyFollow.Move(false);
             shoot.ShootBullet(false);
             itemAnimation.Animate(false);
+            enableTimer = false;
         }
         else
         {
+            enableTimer = true;
             cameraLook.Look(true);
             playerMove.Move(true);
             enemyFollow.Move(true);
             shoot.ShootBullet(true);
             itemAnimation.Animate(true);
+            enableTimer = true;
         }
     }
 
     void PlayerWin()
-    {   
+    {
         FreezeGame(true);
         menuManager.GameEndMenu("You win! :)");
     }
 
-    public void PlayerLose() {
+    public void PlayerLose()
+    {
         FreezeGame(true);
         menuManager.GameEndMenu("You lose! :(");
     }
 
-    void Timer() {
-        if (time > 0) {
+    void Timer()
+    {
+        if (time > 0)
+        {
             time -= Time.deltaTime;
         }
-        else if (time < 0) {
+        else if (time < 0)
+        {
             time = 0;
             PlayerWin();
         }
