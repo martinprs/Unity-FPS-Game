@@ -18,4 +18,12 @@ public class EnemyFollow : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
     }
+
+    public void Move(bool enabled)
+    {
+        if (!enabled)
+        {
+            speed = 0;
+        }
+    }
 }
