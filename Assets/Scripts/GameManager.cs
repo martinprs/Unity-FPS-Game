@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Escape)) {
+            menuManager.PauseMenu();
             FreezeGame(true);
         }
     }
@@ -46,7 +47,7 @@ public class GameManager : MonoBehaviour
         itemAnimations = FindObjectsOfType<ItemAnimation>();
     }
 
-    void FreezeGame(bool enabled)
+    public void FreezeGame(bool enabled)
     {
         if (enabled)
         {

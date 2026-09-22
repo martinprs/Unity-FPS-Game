@@ -9,7 +9,11 @@ public class MenuManager : MonoBehaviour
     public GameObject MenuCanvas;
     public GameObject GameEndCanvas;
     public TMP_Text Header;
+    public GameObject MenuResumeButton;
+    public GameObject MenuRestartButton;
+    public GameObject MenuExitButton;
 
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +21,13 @@ public class MenuManager : MonoBehaviour
         GameCanvas.SetActive(true);
         MenuCanvas.SetActive(false);
         GameEndCanvas.SetActive(false);
+        Header.text = "";
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void Awake()
+    {
+        gameManager = GetComponent<GameManager>();
     }
 
     public void GameEndMenu(string text)
@@ -26,5 +37,30 @@ public class MenuManager : MonoBehaviour
         GameEndCanvas.SetActive(true);
         Header.text = text;
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void PauseMenu()
+    {
+        GameCanvas.SetActive(false);
+        MenuCanvas.SetActive(true);
+        GameEndCanvas.SetActive(false);
+        Header.text = "Paused";
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void ResumeGame()
+    {   
+        Start();
+        gameManager.FreezeGame(false);
+    }
+
+    public void RestartGame()
+    {   
+        Application.LoadLevel(Application.loadedLevel);
+    }
+
+    public void ExitGame()
+    {
+        // load to mainmenu scene
     }
 }
