@@ -57,4 +57,13 @@ public class PlayerMove : MonoBehaviour
         float targetHeight = crouching ? crouchingHeight : standingHeight;
         cc.height = Mathf.Lerp(cc.height, targetHeight, Time.deltaTime * heightChangeSpeed);
     }
+
+    public void Move(bool enabled) {
+        if (!enabled) {
+            walkSpeed = 0f;
+            sprintSpeed = 0f;
+            jumpHeight = 0f;
+            crouchingHeight = standingHeight;
+        }
+    }
 }
