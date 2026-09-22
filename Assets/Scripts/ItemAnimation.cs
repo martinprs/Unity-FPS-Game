@@ -18,5 +18,8 @@ public class ItemAnimation : MonoBehaviour
         {
             rotationSpeed = 0f;
         }
+        else {
+            rotationSpeed = 90f;
+        }
     }
 }

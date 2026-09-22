@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    public float walkSpeed = 5f;
-    public float sprintSpeed = 9f;
-    public float crouchSpeed = 2.5f;
+    private float walkSpeed = 5f;
+    private float sprintSpeed = 9f;
+    private float crouchSpeed = 2.5f;
 
-    public float jumpHeight = 1.5f;
-    public float gravity = -9.81f;
+    private float jumpHeight = 1.5f;
+    private float gravity = -9.81f;
 
-    public float standingHeight = 1.8f;
-    public float crouchingHeight = 1.0f;
-    public float heightChangeSpeed = 6f;
+    private float standingHeight = 1.8f;
+    private float crouchingHeight = 1.0f;
+    private float heightChangeSpeed = 6f;
 
     CharacterController cc;
     Vector3 velocity;
@@ -64,6 +64,13 @@ public class PlayerMove : MonoBehaviour
             sprintSpeed = 0f;
             jumpHeight = 0f;
             crouchingHeight = standingHeight;
+        } 
+        else
+        {
+            walkSpeed = 5f;
+            sprintSpeed = 9f;
+            jumpHeight = 1.5f;
+            crouchingHeight = 1.0f;
         }
     }
 }

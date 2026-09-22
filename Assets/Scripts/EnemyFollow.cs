@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyFollow : MonoBehaviour
 {
     public Transform player;
-    public float speed = 3f;
+    private float speed = 3f;
 
     void Update()
     {
@@ -17,6 +17,9 @@ public class EnemyFollow : MonoBehaviour
         if (!enabled)
         {
             speed = 0;
+        } else
+        {
+            speed = 3f;
         }
     }
 }
