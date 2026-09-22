@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private PlayerMove playerMove;
     private EnemyFollow enemyFollow;
     private Shoot shoot;
+    private ItemAnimation itemAnimation;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
         playerMove = GetComponent<PlayerMove>();
         enemyFollow = GetComponent<EnemyFollow>();
         shoot = GetComponent<Shoot>();
+        itemAnimation = GetComponent<ItemAnimation>();
     }
 
     void FreezeGame(bool enabled)
@@ -42,13 +44,15 @@ public class GameManager : MonoBehaviour
             playerMove.Move(false);
             enemyFollow.Move(false);
             shoot.ShootBullet(false);
+            itemAnimation.Animate(false);
         }
         else
         {
             cameraLook.Look(true);
             playerMove.Move(true);
-            enemyFollow.Move(false);
+            enemyFollow.Move(true);
             shoot.ShootBullet(true);
+            itemAnimation.Animate(true);
         }
     }
 
