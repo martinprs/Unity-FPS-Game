@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     private PlayerMove playerMove;
     private EnemyFollow[] enemyFollows;
     private Shoot shoot;
-    private ItemAnimation itemAnimation;
+    private ItemAnimation[] itemAnimations;
 
     // Start is called before the first frame update
     void Start()
@@ -53,26 +53,30 @@ public class GameManager : MonoBehaviour
             enableTimer = false;
             cameraLook.Look(false);
             playerMove.Move(false);
+            shoot.ShootBullet(false);
             foreach (EnemyFollow enemy in enemyFollows)
             {
                 enemy.Move(false);
             }
-            shoot.ShootBullet(false);
-            itemAnimation.Animate(false);
-            enableTimer = false;
+            foreach (ItemAnimation item in itemAnimations) 
+            {
+                item.Animate(false);
+            }
         }
         else
         {
             enableTimer = true;
             cameraLook.Look(true);
             playerMove.Move(true);
+            shoot.ShootBullet(true);
             foreach (EnemyFollow enemy in enemyFollows)
             {
                 enemy.Move(true);
             }
-            shoot.ShootBullet(true);
-            itemAnimation.Animate(true);
-            enableTimer = true;
+            foreach (ItemAnimation item in itemAnimations) 
+            {
+                item.Animate(true);
+            }
         }
     }
 
@@ -103,4 +107,4 @@ public class GameManager : MonoBehaviour
         int seconds = Mathf.FloorToInt(time % 60);
         TimerText.text = string.Format("{00:00}:{1:00} Remaining", minutes, seconds);
     }
-}
+};
