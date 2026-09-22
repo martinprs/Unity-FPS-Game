@@ -17,6 +17,7 @@ public class Shoot : MonoBehaviour
 
     private float nextFireTime;
     private bool isReloading;
+    private bool enableShoot = true;
 
     void Start()
     {
@@ -28,7 +29,7 @@ public class Shoot : MonoBehaviour
         if (Input.GetMouseButton(0) && !isReloading && Time.time >= nextFireTime && bullets > 0)
         {
             nextFireTime = Time.time + fireRate;
-            ShootBullet();
+            ShootBullet(enableShoot);
         }
 
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && bullets < 30f && mags > 0)
@@ -37,12 +38,17 @@ public class Shoot : MonoBehaviour
         }
     }
 
-    void ShootBullet()
+    public void ShootBullet(bool enabled)
     {
-        GameObject b = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
-        b.GetComponent<Rigidbody>().velocity = shootPoint.forward * speed;
-        bullets--;
-        AmmoUpdate();
+        enableShoot = enabled;
+
+        if (enabled)
+        {
+            GameObject b = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+            b.GetComponent<Rigidbody>().velocity = shootPoint.forward * speed;
+            bullets--;
+            AmmoUpdate();
+        }
     }
 
     void OnTriggerEnter(Collider col)
