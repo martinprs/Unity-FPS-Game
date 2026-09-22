@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     private MenuManager menuManager;
     private CameraLook cameraLook;
     private PlayerMove playerMove;
-    private EnemyFollow enemyFollow;
+    private EnemyFollow[] enemyFollows;
     private Shoot shoot;
     private ItemAnimation itemAnimation;
 
@@ -41,9 +41,9 @@ public class GameManager : MonoBehaviour
         menuManager = GetComponent<MenuManager>();
         cameraLook = GetComponentInChildren<CameraLook>();
         playerMove = GetComponent<PlayerMove>();
-        enemyFollow = GetComponent<EnemyFollow>();
+        enemyFollows = FindObjectsOfType<EnemyFollow>();
         shoot = GetComponent<Shoot>();
-        itemAnimation = GetComponent<ItemAnimation>();
+        itemAnimation = GetComponentInChildren<ItemAnimation>(true);
     }
 
     void FreezeGame(bool enabled)
@@ -53,7 +53,10 @@ public class GameManager : MonoBehaviour
             enableTimer = false;
             cameraLook.Look(false);
             playerMove.Move(false);
-            enemyFollow.Move(false);
+            foreach (EnemyFollow enemy in enemyFollows)
+            {
+                enemy.Move(false);
+            }
             shoot.ShootBullet(false);
             itemAnimation.Animate(false);
             enableTimer = false;
@@ -63,7 +66,10 @@ public class GameManager : MonoBehaviour
             enableTimer = true;
             cameraLook.Look(true);
             playerMove.Move(true);
-            enemyFollow.Move(true);
+            foreach (EnemyFollow enemy in enemyFollows)
+            {
+                enemy.Move(true);
+            }
             shoot.ShootBullet(true);
             itemAnimation.Animate(true);
             enableTimer = true;
