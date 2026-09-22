@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text TimerText;
     public float time = 300f; // 5 minutes
 
+    private MenuManager menuManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,13 +22,17 @@ public class GameManager : MonoBehaviour
         Timer();
     }
 
+    private void Awake() {
+        menuManager = GetComponent<MenuManager>();
+    }
+
     void PlayerWin()
     {
-        // Load to new scene
+        menuManager.EndGame("You win! :)");
     }
 
     public void PlayerLose() {
-        // Freeze movement and make ui pop up
+        menuManager.EndGame("You lose! :(");
     }
 
     void Timer() {
