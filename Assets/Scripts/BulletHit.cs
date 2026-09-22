@@ -7,16 +7,9 @@ public class BulletHit : MonoBehaviour
     public float lifeTime = 1f;
     public EnemyHealth enemyHealth;
 
-    // Start is called before the first frame update
     void Start()
     {
         Destroy(transform.root.gameObject, lifeTime);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void Awake()

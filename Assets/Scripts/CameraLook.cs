@@ -8,13 +8,11 @@ public class CameraLook : MonoBehaviour
     float xRotation = 0f;
     bool enableLook = true;
 
-    // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Look(enableLook);

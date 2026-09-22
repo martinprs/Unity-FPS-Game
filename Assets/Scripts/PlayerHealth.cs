@@ -17,12 +17,6 @@ public class PlayerHealth : MonoBehaviour
         HealthUpdate();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void Awake()
     {
         gameManager = GetComponent<GameManager>();
