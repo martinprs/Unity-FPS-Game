@@ -26,13 +26,27 @@ public class GameManager : MonoBehaviour
         menuManager = GetComponent<MenuManager>();
     }
 
-    void PlayerWin()
+    void FreezeGame(bool enabled)
     {
-        menuManager.EndGame("You win! :)");
+        if (enabled)
+        {
+            // freeze game
+        }
+        else
+        {
+            // unfreeze game
+        }
+    }
+
+    void PlayerWin()
+    {   
+        FreezeGame(true);
+        menuManager.GameEndMenu("You win! :)");
     }
 
     public void PlayerLose() {
-        menuManager.EndGame("You lose! :(");
+        FreezeGame(true);
+        menuManager.GameEndMenu("You lose! :(");
     }
 
     void Timer() {

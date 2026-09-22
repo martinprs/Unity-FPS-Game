@@ -10,6 +10,7 @@ public class MenuManager : MonoBehaviour
     public GameObject GameEndCanvas;
     public TMP_Text Header;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +19,12 @@ public class MenuManager : MonoBehaviour
         GameEndCanvas.SetActive(false);
     }
 
-    public void EndGame(string text)
+    public void GameEndMenu(string text)
     {
         GameCanvas.SetActive(false);
         MenuCanvas.SetActive(false);
         GameEndCanvas.SetActive(true);
         Header.text = text;
+        Cursor.lockState = CursorLockMode.None;
     }
 }
