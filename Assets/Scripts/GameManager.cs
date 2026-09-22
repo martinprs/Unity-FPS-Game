@@ -72,14 +72,14 @@ public class GameManager : MonoBehaviour
 
     void PlayerWin()
     {
-        FreezeGame(true);
         menuManager.GameEndMenu("You win! :)");
+        FreezeGame(true);
     }
 
     public void PlayerLose()
     {
-        FreezeGame(true);
         menuManager.GameEndMenu("You lose! :(");
+        FreezeGame(true);
     }
 
     void Timer()
