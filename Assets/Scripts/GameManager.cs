@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public float time = 300f; // 5 minutes
 
     private MenuManager menuManager;
+    private CameraLook cameraLook;
 
     // Start is called before the first frame update
     void Start()
@@ -24,17 +25,18 @@ public class GameManager : MonoBehaviour
 
     private void Awake() {
         menuManager = GetComponent<MenuManager>();
+        cameraLook = GetComponentInChildren<CameraLook>();
     }
 
     void FreezeGame(bool enabled)
     {
         if (enabled)
         {
-            // freeze game
+            cameraLook.Look(false);
         }
         else
         {
-            // unfreeze game
+            cameraLook.Look(true);
         }
     }
 
