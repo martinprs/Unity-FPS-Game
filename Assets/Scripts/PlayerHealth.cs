@@ -10,6 +10,8 @@ public class PlayerHealth : MonoBehaviour
     public TMP_Text HealthText;
     public float tickRate = 0.5f;
 
+    private GameManager gameManager;
+
     void Start()
     {
         HealthUpdate();
@@ -19,6 +21,11 @@ public class PlayerHealth : MonoBehaviour
     void Update()
     {
 
+    }
+
+    private void Awake()
+    {
+        gameManager = GetComponent<GameManager>();
     }
 
     void OnTriggerEnter(Collider col)
@@ -45,7 +52,7 @@ public class PlayerHealth : MonoBehaviour
 
             if (health <= 0)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                gameManager.PlayerLose();
             }
 
             yield return new WaitForSeconds(tickRate);
