@@ -7,11 +7,12 @@ public class GameManager : MonoBehaviour
 {
     public TMP_Text TimerText;
     public float time = 300f; // 5 minutes
+    public float EnemySpawnInterval = 10f;
     public GameObject Enemy;
     public GameObject[] EnemySpawns;
 
+    public float spawnTimer;
     private bool enableTimer = true;
-    private float spawnTimer;
 
     private MenuManager menuManager;
     private CameraLook cameraLook;
@@ -113,7 +114,7 @@ public class GameManager : MonoBehaviour
         else
         {
             spawnTimer += Time.deltaTime;
-            if (spawnTimer >= 5f)
+            if (spawnTimer >= EnemySpawnInterval)
             {
                 SpawnEnemy();
                 spawnTimer = 0f;
