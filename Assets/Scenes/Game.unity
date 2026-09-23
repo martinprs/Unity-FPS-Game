@@ -5958,7 +5958,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimerText: {fileID: 1456769255}
   time: 300
-  Enemy: {fileID: 7570019017184873261, guid: 229e2d76053ba604baaba1cbc62a5628, type: 3}
+  EnemySpawnInterval: 10
+  Enemy: {fileID: 7452981903888899996, guid: 0c725c8acef261d45ad40693698b9711, type: 3}
   EnemySpawns:
   - {fileID: 96996383}
   - {fileID: 2087911723}
@@ -5968,6 +5969,7 @@ MonoBehaviour:
   - {fileID: 1939813966}
   - {fileID: 674889401}
   - {fileID: 1221115690}
+  spawnTimer: 10
 --- !u!114 &1417708378
 MonoBehaviour:
   m_ObjectHideFlags: 0
