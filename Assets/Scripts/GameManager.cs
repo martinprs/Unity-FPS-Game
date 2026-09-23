@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] EnemySpawns;
 
     private bool enableTimer = true;
+    private float spawnTimer;
 
     private MenuManager menuManager;
     private CameraLook cameraLook;
@@ -30,11 +31,6 @@ public class GameManager : MonoBehaviour
         {
             menuManager.PauseMenu();
             FreezeGame(true);
-        }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            SpawnEnemy();
         }
     }
 
@@ -108,11 +104,22 @@ public class GameManager : MonoBehaviour
         {
             time -= Time.deltaTime;
         }
-        else if (time < 0)
+        
+        if (time <= 0)
         {
             time = 0;
             PlayerWin();
         }
+        else
+        {
+            spawnTimer += Time.deltaTime;
+            if (spawnTimer >= 5f)
+            {
+                SpawnEnemy();
+                spawnTimer = 0f;
+            }
+        }
+
         int minutes = Mathf.FloorToInt(time / 60);
         int seconds = Mathf.FloorToInt(time % 60);
         TimerText.text = string.Format("{00:00}:{1:00} Remaining", minutes, seconds);
