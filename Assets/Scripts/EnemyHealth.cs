@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
     public int health = 3;
     public GameObject HealthPack;
     public GameObject AmmoBox;
+    public Transform itemSpawn;
     
     public void DecreaseHealth()
     {
@@ -16,15 +17,17 @@ public class EnemyHealth : MonoBehaviour
         if (health <= 0)
         {   
             int drop = Random.Range(1, 4);
+            Transform spawnPoint = itemSpawn != null ? itemSpawn : transform.Find("ItemSpawn");
+            Vector3 spawnPosition = spawnPoint != null ? spawnPoint.position : transform.position;
 
             if (drop == 1)
             {
-                Instantiate(AmmoBox, transform.position, Quaternion.identity);
+                Instantiate(AmmoBox, spawnPosition, Quaternion.identity);
             }
             
             else if (drop == 2)
             {
-                Instantiate(HealthPack, transform.position, Quaternion.identity);
+                Instantiate(HealthPack, spawnPosition, Quaternion.identity);
             }
 
             Destroy(gameObject);

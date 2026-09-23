@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public TMP_Text TimerText;
     public float time = 300f; // 5 minutes
+    public GameObject Enemy;
+    public GameObject[] EnemySpawns;
 
     private bool enableTimer = true;
 
@@ -24,9 +26,23 @@ public class GameManager : MonoBehaviour
             Timer();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
             menuManager.PauseMenu();
             FreezeGame(true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            SpawnEnemy();
+        }
+    }
+
+    void SpawnEnemy()
+    {
+        foreach (GameObject spawnPoint in EnemySpawns)
+        {
+            Instantiate(Enemy, spawnPoint.transform.position, Quaternion.identity);
         }
     }
 
@@ -52,7 +68,7 @@ public class GameManager : MonoBehaviour
             {
                 enemy.Move(false);
             }
-            foreach (ItemAnimation item in itemAnimations) 
+            foreach (ItemAnimation item in itemAnimations)
             {
                 item.Animate(false);
             }
@@ -67,7 +83,7 @@ public class GameManager : MonoBehaviour
             {
                 enemy.Move(true);
             }
-            foreach (ItemAnimation item in itemAnimations) 
+            foreach (ItemAnimation item in itemAnimations)
             {
                 item.Animate(true);
             }
