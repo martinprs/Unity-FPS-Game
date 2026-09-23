@@ -5,26 +5,19 @@ using UnityEngine;
 public class BulletHit : MonoBehaviour
 {
     public float lifeTime = 1f;
-    public EnemyHealth enemyHealth;
 
     void Start()
     {
         Destroy(transform.root.gameObject, lifeTime);
     }
 
-    private void Awake()
-    {
-        enemyHealth = FindObjectOfType<EnemyHealth>();
-    }
-    
     void OnTriggerEnter(Collider col)
     {
+        EnemyHealth enemyHealth = col.GetComponentInParent<EnemyHealth>();
+
+        enemyHealth.DecreaseHealth();
+
         Destroy(transform.root.gameObject);
-        
-        if (col.gameObject.CompareTag("Enemy"))
-        {
-            enemyHealth.DecreaseHealth();
-        }
     }
 
 }
